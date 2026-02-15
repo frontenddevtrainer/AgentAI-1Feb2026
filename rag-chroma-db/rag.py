@@ -21,6 +21,7 @@ class RAGState(TypedDict):
     question: str
     docs: List[Document]
     answer: str
+    
 
 
 def _format_context(docs: List[Document]) -> str:
@@ -66,7 +67,7 @@ def get_graph(collection_name: str = DEFAULT_COLLECTION):
 
     graph.add_node("retrieve", retrieve)
     graph.add_node("generate", generate)
-    
+
     graph.add_edge(START, "retrieve")
     graph.add_edge("retrieve", "generate")
     graph.add_edge("generate", END)
